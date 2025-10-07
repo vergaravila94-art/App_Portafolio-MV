@@ -10,6 +10,19 @@ Original file is located at
 # Importamos las librerías
 import streamlit as st
 import pandas as pd
+import yfinance as yf
 
 st.title ("Mi primera aplicacion en Streamlit 🚀")
 
+# Lista de ticker inicial
+lista_tickers = ["AAPL", "MSFT", "NVDA"]
+
+#Selector
+
+ticker = st.selectbox("Elija un ticker", lista_tickers)
+
+# Botón
+
+if st.button("Descargar"):
+  data=yf.download(ticker,period="1mo")
+  st.dataframe(data)
